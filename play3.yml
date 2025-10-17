@@ -1,0 +1,17 @@
+---
+- hosts: ws
+  become: yes
+  gather_facts: yes
+  ignore_errors: True
+
+  tasks:
+    - name: Package Install
+      yum:
+        name: "{{item}}"
+        state: present
+      loop:
+          - wget
+          - vim
+          - docker
+          - httpd
+          - curl

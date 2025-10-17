@@ -27,6 +27,13 @@ pipeline {
 
                 }
              }
+             stage('Download from Artifactory to Ansible Server'){
+                steps {
+                    sh "curl -uadmin:AP7iKibFPukTLYzjaqQWMbvj12T -O \
+                    "http://54.242.136.171:8081/artifactory/Ansible-repo/plays/play.zip" "
+                }
+             }
+             
 
     }
 }

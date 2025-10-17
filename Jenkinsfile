@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    
     stages {
         stage('Create a Zip File') {
             steps {
@@ -14,13 +15,18 @@ pipeline {
                     //archiveArtifacts artifacts: zipFileName, fingerprint: true
                 }
             }
-            stage('Upload to Artifactory') {
-                steps {
-                    script {
-                        // Define Artifactory server and repository details
-                        curl -uadmin:AP7iKibFPukTLYzjaqQWMbvj12T -T . "http://54.242.136.171:8081/artifactory/Ansible-repo/plays/play.zip"
-
+            
         }
-    }
+        stage('Upload to Artifactory') {
+                steps {
+                    script {  // Define Artifactory server and repository details
+                      sh  ''' curl -uadmin:AP7iKibFPukTLYzjaqQWMbvj12T -T play.zip \
+                        "http://54.242.136.171:8081/artifactory/Ansible-repo/plays/play.zip" '''
+                        }
+                      
 
+                }
+             }
+
+    }
 }
